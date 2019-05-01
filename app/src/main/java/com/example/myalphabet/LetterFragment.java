@@ -45,4 +45,6 @@ public class LetterFragment extends ListFragment {
 //        return inflater.inflate(R.layout.fragment_letter, container, false);
     }
 
+
+
 }
