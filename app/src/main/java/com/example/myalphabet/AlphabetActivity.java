@@ -22,11 +22,10 @@ public class AlphabetActivity extends AppCompatActivity {
         buttonInGridLayout();
     }
 
-//    public void onButtonClick(View view ){
-//        Intent intent=new Intent(this,LetterDetailActivity.class);
-//        intent.putExtra("LetterNumber",view.getId());
-//        startActivity(intent);
-//    }
+    public void onButtonClick(View view ){
+        Intent intent=new Intent(this,Main2Activity.class);
+        startActivity(intent);
+    }
 
     private void buttonInGridLayout(){
         int length=Letter.letters.length;
@@ -40,7 +39,6 @@ public class AlphabetActivity extends AppCompatActivity {
             capital.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("","**********************************************************clicked"+v.getId()+"*********************************************");
                     int id=v.getId();
                     Intent intent = new Intent(AlphabetActivity.this,LetterDetailActivity.class);
                     intent.putExtra(LetterDetailActivity.EXTRA_BUTTON_ID,(int) id);
