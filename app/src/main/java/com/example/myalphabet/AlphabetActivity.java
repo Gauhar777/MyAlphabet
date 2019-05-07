@@ -22,10 +22,10 @@ public class AlphabetActivity extends AppCompatActivity {
         buttonInGridLayout();
     }
 
-    public void onButtonClick(View view ){
-        Intent intent=new Intent(this,Main2Activity.class);
-        startActivity(intent);
-    }
+//    public void onButtonClick(View view ){
+//        Intent intent=new Intent(this,Main2Activity.class);
+//        startActivity(intent);
+//    }
 
     private void buttonInGridLayout(){
         int length=Letter.letters.length;
