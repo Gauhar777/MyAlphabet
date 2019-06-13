@@ -14,7 +14,6 @@ public class MyAdapter extends FragmentPagerAdapter {
     }
     @Override
     public Fragment getItem(int position) {
-
         return(DetailFragment.newInstance(position));
     }
 

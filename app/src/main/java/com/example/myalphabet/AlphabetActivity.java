@@ -1,18 +1,13 @@
 package com.example.myalphabet;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.TextView;
-
-import static com.example.myalphabet.R.color.mainBlue;
 
 public class AlphabetActivity extends AppCompatActivity {
     @Override
@@ -20,23 +15,27 @@ public class AlphabetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alphabet);
         buttonInGridLayout();
+        goPreviousPgeTollbar();
     }
 
-//    public void onButtonClick(View view ){
-//        Intent intent=new Intent(this,Main2Activity.class);
-//        startActivity(intent);
-//    }
 
     private void buttonInGridLayout(){
         int length=Letter.letters.length;
         GridLayout grl=(GridLayout)findViewById(R.id.grid);
         for (int i = 0; i <length;i++){
+
             String text=Letter.letters[i].getCapital()+" "+Letter.letters[i].getUppercase();
-            Button capital=new Button(this);
-            capital.setBackgroundResource(R.drawable.letter_button_back);
-            capital.setText(text);
-            capital.setId(i);
-            capital.setOnClickListener(new View.OnClickListener() {
+            Button btnLetter=new Button(this);
+            if (Letter.letters[i].getType()=="dt"){
+                btnLetter.setTextColor(getResources().getColor(R.color.mainGray));
+                btnLetter.setBackgroundResource(R.drawable.dt_letter_button_back);
+            }else {
+                btnLetter.setTextColor(getResources().getColor(R.color.mainWhite));
+                btnLetter.setBackgroundResource(R.drawable.ds_letter_button_back);
+            }
+            btnLetter.setText(text);
+            btnLetter.setId(i);
+            btnLetter.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int id=v.getId();
@@ -45,14 +44,24 @@ public class AlphabetActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-            capital.setTextSize(50);
-            capital.setTextColor(getResources().getColor(R.color.mainGray));
+            btnLetter.setTextSize(50);
+
             GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
             layoutParams.height = 330;
             layoutParams.width = 330;
             layoutParams.setMargins(15, 15,15, 15);
             layoutParams.setGravity(Gravity.CENTER);
-            grl.addView(capital, layoutParams);
+            grl.addView(btnLetter, layoutParams);
         }
     }
+
+    public void goPreviousPgeTollbar(){
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+    }
+
 }

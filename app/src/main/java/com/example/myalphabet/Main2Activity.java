@@ -44,7 +44,7 @@ public class Main2Activity extends AppCompatActivity {
         });
     }
 
-    public void playAndStop(){
+    public void playAndStop(View view) {
         if (buttonPlayStop.getText()==getString(R.string.play_str)){
             buttonPlayStop.setText(getString(R.string.pause_str));
             try{
@@ -75,4 +75,7 @@ public class Main2Activity extends AppCompatActivity {
             seekBar.setProgress(0);
         }
     }
+
+
+
 }

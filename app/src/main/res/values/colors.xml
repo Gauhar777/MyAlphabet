@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">@color/mainGray</color>
 <color name="textColorPrimary">#000</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="mainBlue">#66ddff</color>
+    <color name="mainBlue">#607dff</color>
     <color name="mainWhite">#fff</color>
     <color name="mainGray">#646568</color>
+    <color name="mainYellow">#FFF888</color>
 </resources>

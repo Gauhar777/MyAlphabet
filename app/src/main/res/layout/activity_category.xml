@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/mainWhite"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CategoryActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/mainGray"
+        android:background="@drawable/action_bar_back"
+        android:layout_width="match_parent" >
+    </android.support.v7.widget.Toolbar>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.602">
+            <Button
+                android:id="@+id/to_alphabeth"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="@color/mainBlue"
+                android:onClick="toAlphabeth"
+                android:padding="15dp"
+                android:text="@string/Alphabeth"
+                android:textColor="@color/mainWhite"
+                android:textSize="25sp" />
+            <Button
+                android:id="@+id/to_ex"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@color/mainBlue"
+                android:onClick="toAlphabeth"
+                android:padding="15dp"
+                android:text="@string/exersize"
+                android:textColor="@color/mainWhite"
+                android:textSize="25sp" />
+            <Button
+                android:id="@+id/to_aboutUs"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@color/mainBlue"
+                android:onClick="toAlphabeth"
+                android:padding="15dp"
+                android:text="@string/aboutUs"
+                android:textColor="@color/mainWhite"
+                android:textSize="25sp" />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>
