@@ -13,14 +13,20 @@
         android:background="@drawable/action_bar_back"
         android:layout_width="match_parent" >
     </android.support.v7.widget.Toolbar>
-    <GridLayout
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/grid"
-        android:layout_gravity="top|center"
-        android:columnCount="3"
-        android:orientation="horizontal">
-    </GridLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <GridLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:textAllCaps="false"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/grid"
+            android:layout_gravity="top|center"
+            android:columnCount="3"
+            android:orientation="horizontal">
+        </GridLayout>
+    </ScrollView>
+
 
 </LinearLayout>

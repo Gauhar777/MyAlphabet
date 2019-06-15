@@ -9,11 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".AlphabetActivity"
-            android:parentActivityName=".CategoryActivity"></activity>
+        <activity android:name=".OneTaskActivity"
+            android:parentActivityName=".ExrActivity"></activity>
+        <activity android:name=".ExrActivity"
+            android:parentActivityName=".CategoryActivity"/>
+        <activity
+            android:name=".AlphabetActivity"
+            android:parentActivityName=".CategoryActivity" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".LetterDetailActivity"
-            android:parentActivityName=".AlphabetActivity"/>
+        <activity
+            android:name=".LetterDetailActivity"
+            android:parentActivityName=".AlphabetActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".CategoryActivity">
             <intent-filter>

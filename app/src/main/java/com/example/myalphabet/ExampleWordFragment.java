@@ -25,25 +25,34 @@ import java.util.List;
 public class ExampleWordFragment extends ListFragment {
     private DBHelper mDBHelper;
     private SQLiteDatabase mDb;
-    public long productId;
+    public long letterId;
 
+    public static ExampleWordFragment newInstance(int letterId) {
+        Bundle args = new Bundle();
+        ExampleWordFragment fragment = new ExampleWordFragment();
+        args.putInt("letter_id",letterId);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return super.onCreateView(inflater,container,savedInstanceState);
+        View view=super.onCreateView(inflater,container,savedInstanceState);
+        letterId = getArguments() != null ? getArguments().getInt("letter_id") : 1;
+        return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
         setupDBHelper();
-        Cursor cursor=mDb.rawQuery("SELECT * FROM example",null);
+        Cursor cursor=mDb.rawQuery("SELECT * FROM example WHERE letter_id="+letterId,null);
         List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-            String text = cursor.getString(1);
-            String title = cursor.getString(2);
+            String text = cursor.getString(3);
+            String title = cursor.getString(1);
             HashMap<String, String> hm = new HashMap<String, String>();
             hm.put("title",title);
             hm.put("txt",text);
@@ -52,11 +61,15 @@ public class ExampleWordFragment extends ListFragment {
         }
         cursor.close();
         String[] from = { "title","txt"};
-        int[] to={R.id.mword,R.id.mword2};
+        int[] to={R.id.ex_word,R.id.ex_transcript};
         SimpleAdapter adapter = new SimpleAdapter(getContext(), aList, R.layout.fragment_example_word, from, to);
         setListAdapter(adapter);
     }
 
+/*    public void setLetterId(long letterId) {
+        this.letterId = letterId;
+    }
+*/
     private void setupDBHelper(){
         Context context=getContext();
         mDBHelper=new DBHelper(context);
@@ -72,6 +85,4 @@ public class ExampleWordFragment extends ListFragment {
             throw mSQLException;
         }
     }
-
-
 }

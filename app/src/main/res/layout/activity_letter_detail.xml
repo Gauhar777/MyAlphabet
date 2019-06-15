@@ -29,15 +29,13 @@
         android:layout_height="match_parent"
         tools:context=".LetterDetailActivity">
 
-        <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.v4.view.ViewPager
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/pager2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="-250dp"
-            tools:layout_editor_absoluteY="0dp">
-
-        </android.support.v4.view.ViewPager>
-
+            tools:layout_editor_absoluteY="0dp"/>
     </android.support.constraint.ConstraintLayout>
     </LinearLayout>
     <android.support.v4.widget.NestedScrollView
@@ -86,7 +84,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <fragment
-                        android:id="@+id/char_list"
+                        android:id="@+id/example_list"
                         android:name="com.example.myalphabet.ExampleWordFragment"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -95,7 +93,4 @@
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
-
-
 </android.support.design.widget.CoordinatorLayout>
