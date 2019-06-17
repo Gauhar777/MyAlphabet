@@ -36,6 +36,31 @@
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="-250dp"
             tools:layout_editor_absoluteY="0dp"/>
+
+        <Button
+            android:id="@+id/prev_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="prev"
+            app:layout_constraintBottom_toBottomOf="@+id/pager2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pager2" />
+
+        <Button
+            android:id="@+id/next_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pager2" />
     </android.support.constraint.ConstraintLayout>
     </LinearLayout>
     <android.support.v4.widget.NestedScrollView
@@ -83,12 +108,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <fragment
-                        android:id="@+id/example_list"
-                        android:name="com.example.myalphabet.ExampleWordFragment"
+                    <android.support.v4.view.ViewPager
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:id="@+id/ex_pager"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp" />
+                        android:layout_height="wrap_content">
+
+                    </android.support.v4.view.ViewPager>
                 </LinearLayout>
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>

@@ -27,10 +27,10 @@ public class ExampleWordFragment extends ListFragment {
     private SQLiteDatabase mDb;
     public long letterId;
 
-    public static ExampleWordFragment newInstance(int letterId) {
+    public static ExampleWordFragment newInstance(int letter) {
         Bundle args = new Bundle();
         ExampleWordFragment fragment = new ExampleWordFragment();
-        args.putInt("letter_id",letterId);
+        args.putInt("letter_id",letter);
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,7 +47,9 @@ public class ExampleWordFragment extends ListFragment {
     public void onStart() {
         super.onStart();
         setupDBHelper();
-        Cursor cursor=mDb.rawQuery("SELECT * FROM example WHERE letter_id="+letterId,null);
+        letterId = getArguments() != null ? getArguments().getInt("letter_id") : 1;
+        int letter= (int) (letterId+1);
+        Cursor cursor=mDb.rawQuery("SELECT * FROM example WHERE letter_id="+letter,null);
         List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
@@ -65,7 +67,6 @@ public class ExampleWordFragment extends ListFragment {
         SimpleAdapter adapter = new SimpleAdapter(getContext(), aList, R.layout.fragment_example_word, from, to);
         setListAdapter(adapter);
     }
-
 /*    public void setLetterId(long letterId) {
         this.letterId = letterId;
     }

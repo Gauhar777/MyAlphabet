@@ -24,7 +24,7 @@ public class Main2Activity extends AppCompatActivity {
 
     private void initViews() {
         buttonPlayStop = (Button)findViewById(R.id.ButtonPlayStop);
-        mediaPlayer=MediaPlayer.create(this,R.raw.dua_lipa);
+        mediaPlayer=MediaPlayer.create(this,R.raw.a_w);
 
         seekBar=(SeekBar) findViewById(R.id.seekBar);
         seekBar.setMax(mediaPlayer.getDuration());

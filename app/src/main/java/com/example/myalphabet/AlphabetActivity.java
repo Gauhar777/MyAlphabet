@@ -18,9 +18,10 @@ import android.widget.GridLayout;
 import java.io.IOException;
 
 public class AlphabetActivity extends AppCompatActivity {
+
     private DBHelper mDBHelper;
     private SQLiteDatabase mDb;
-    private MediaPlayer mediaPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,7 @@ public class AlphabetActivity extends AppCompatActivity {
         super.onStart();
 
     }
-
+//***************************************Every button on calculator alphabeth*******************************
     private void buttonInGridLayout(){
         GridLayout grl=(GridLayout)findViewById(R.id.grid);
             setupDBHelper();

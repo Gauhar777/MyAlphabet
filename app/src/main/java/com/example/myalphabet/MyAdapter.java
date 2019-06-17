@@ -10,7 +10,7 @@ public class MyAdapter extends FragmentPagerAdapter {
     }
     @Override
     public int getCount() {
-        return(10);
+        return(34);
     }
     @Override
     public Fragment getItem(int position) {

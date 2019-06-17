@@ -2,20 +2,26 @@ package com.example.myalphabet;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -29,6 +35,7 @@ public class DetailFragment extends Fragment {
     private MediaPlayer mediaPlayer;
     long letterId;
 
+
     public static DetailFragment newInstance(int letterId) {
         Bundle args = new Bundle();
         DetailFragment fragment = new DetailFragment();
@@ -40,20 +47,32 @@ public class DetailFragment extends Fragment {
     public DetailFragment() {
         // Required empty public constructor
     }
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         View view=inflater.inflate(R.layout.fragment_detail, container, false);
         letterId = getArguments() != null ? getArguments().getInt("letter_id") : 1;
+        Button btnwoman=(Button)view.findViewById(R.id.woman);
+        btnwoman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setupDBHelper();
+                int letter= (int) (letterId+1);
+                Cursor cursorLetter=mDb.rawQuery("SELECT * FROM voice WHERE letter_id="+letter,null);
+                cursorLetter.moveToFirst();
+                Toast.makeText(getActivity(),letterId+"*",Toast.LENGTH_SHORT).show();
+                String name=cursorLetter.getString(2);
+                int rawId = getResources().getIdentifier("com.example.myalphabet:raw/" + name, null, null);
+                mediaPlayer = MediaPlayer.create(getContext(), rawId);
+                mediaPlayer.start();
+            }
+        });
         return view;
     }
 
@@ -93,8 +112,14 @@ public class DetailFragment extends Fragment {
 
     }
 
-    public void onWomanVoiceClick(View view){
-        mediaPlayer= MediaPlayer.create(getContext(),R.raw.dua_lipa);
+    public void onWomanVoiceClick(){
+        setupDBHelper();
+        Cursor cursorLetter=mDb.rawQuery("SELECT * FROM voice WHERE letter_id="+letterId,null);
+        cursorLetter.moveToFirst();
+        Toast.makeText(getActivity(),letterId+"*",Toast.LENGTH_SHORT).show();
+        String name=cursorLetter.getString(2);
+        int rawId = getResources().getIdentifier("com.example.myalphabet:raw/" + name, null, null);
+        mediaPlayer = MediaPlayer.create(getContext(), rawId);
         mediaPlayer.start();
     }
     public void onManVoiceClick(View view ){
