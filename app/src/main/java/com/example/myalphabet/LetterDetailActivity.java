@@ -114,15 +114,27 @@ public class LetterDetailActivity extends AppCompatActivity {
         ld.setAdapter(adapter);
     }
     private ArrayList<ExampleListItemDTO> generateItems (){
+        ViewPager pager=(ViewPager)findViewById(R.id.pager2);
+        int letter=pager.getCurrentItem();
         ArrayList<ExampleListItemDTO> list=new ArrayList<>();
         setupDBHelper();
-        final Cursor cursorExample=mDb.rawQuery("SELECT * FROM example WHERE letter_id="+1,null);
+        final Cursor cursorExample=mDb.rawQuery("SELECT * FROM example WHERE letter_id="+letter,null);
         cursorExample.moveToFirst();
+        try {
         while (!cursorExample.isAfterLast()){
+            int example_id=cursorExample.getInt(0);
             String ex_word=cursorExample.getString(1);
             String ex_transc=cursorExample.getString(3);
-            list.add(new ExampleListItemDTO(ex_word,ex_transc));
-        cursorExample.moveToNext();
+
+            Cursor cursorVoice=mDb.rawQuery("SELECT * FROM voice WHERE example_id="+example_id,null);
+            cursorVoice.moveToFirst();
+            String ex_w_voice=cursorVoice.getString(2);
+            String ex_m_voice=cursorVoice.getString(1);
+            list.add(new ExampleListItemDTO(ex_word,ex_transc,ex_w_voice,ex_m_voice));
+            cursorExample.moveToNext();
+        }
+        }catch (Exception e){
+
         }
         cursorExample.close();
         return list;
@@ -158,54 +170,5 @@ public class LetterDetailActivity extends AppCompatActivity {
         }catch (SQLException mSQLException){
             throw mSQLException;
         }
-    }
-
-    public class dBaseAdapter extends BaseAdapter {
-        private Context context;
-        private ArrayList<ExampleListItemDTO> items;
-        public dBaseAdapter(Context context,ArrayList<ExampleListItemDTO> items){
-            this.context = context;
-            this.items = items;
-        }
-        @Override
-        public int getCount() {
-            return items.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return items.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View view, ViewGroup viewGroup) {
-            ViewHolder viewHolder;
-            if (view==null){
-                view=LayoutInflater.from(context).inflate(R.layout.example_list_item,viewGroup,false);
-                viewHolder=new ViewHolder(view);
-                view.setTag(viewHolder);
-            }else {
-                viewHolder=(ViewHolder)view.getTag();
-            }
-            ExampleListItemDTO currentItem=(ExampleListItemDTO)getItem(position);
-            viewHolder.itemWord.setText(currentItem.getWord());
-            viewHolder.itemTransc.setText(currentItem.getW_transcript());
-            return view;
-        }
-
-        public class ViewHolder{
-            TextView itemWord;
-            TextView itemTransc;
-            public ViewHolder(View view) {
-                itemWord=(TextView)view.findViewById(R.id.item_word);
-                itemTransc=(TextView)view.findViewById(R.id.item_transcript);
-            }
-        }
-
     }
 }
