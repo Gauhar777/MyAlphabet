@@ -106,4 +106,5 @@ public class AlphabetActivity extends AppCompatActivity {
             throw mSQLException;
         }
     }
+
 }

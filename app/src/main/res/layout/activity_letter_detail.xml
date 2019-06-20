@@ -37,27 +37,27 @@
             tools:layout_editor_absoluteX="-250dp"
             tools:layout_editor_absoluteY="0dp"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/prev_page"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="prev"
+            android:background="@drawable/prev"
             app:layout_constraintBottom_toBottomOf="@+id/pager2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pager2" />
 
-        <Button
+        <ImageButton
             android:id="@+id/next_page"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="next"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/pager2" />
@@ -96,26 +96,27 @@
                 android:background="@color/mainWhite"
                 android:layout_width="match_parent"
                 android:layout_height="220dp">
-
+                <ScrollView
+                    android:id="@+id/scrollView1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:fillViewport="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
                 <LinearLayout
                     android:id="@+id/exs"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:background="#fff"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <android.support.v4.view.ViewPager
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        android:id="@+id/ex_pager"
+                    android:orientation="vertical">
+                    <ListView
+                        android:id="@+id/data_list"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </android.support.v4.view.ViewPager>
+                        android:layout_height="wrap_content"></ListView>
                 </LinearLayout>
+                </ScrollView>
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

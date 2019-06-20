@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <Button
-                android:id="@+id/ex_woman_voice"
+                android:id="@+id/ex_man_voice"
                 android:background="@drawable/man_voice"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -55,7 +55,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/ex_man_voice"
+                android:id="@+id/ex_woman_voice"
                 android:background="@drawable/woman_voice"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -66,4 +66,11 @@
 
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
+    <ListView
+        android:id="@+id/data_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
 </LinearLayout>
