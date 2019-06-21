@@ -81,6 +81,24 @@ public class LetterDetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                        @Override
+            public void onPageScrolled(int i, float v, int i1) {
+            }
+            @Override
+            public void onPageSelected(int i) {
+            }
+            @Override
+            public void onPageScrollStateChanged(int i) {
+                if (bottomSheetBehavior.getState()==BottomSheetBehavior.STATE_EXPANDED){
+                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                }
+                ListView ld=(ListView)findViewById(R.id.data_list);
+                dBaseAdapter adapter=new dBaseAdapter(getBaseContext(),generateItems());
+                ld.setAdapter(adapter);
+            }
+        });
 //******************************************************Example list****************************************************
         ListView ld=(ListView)findViewById(R.id.data_list);
         dBaseAdapter adapter=new dBaseAdapter(this,generateItems());
