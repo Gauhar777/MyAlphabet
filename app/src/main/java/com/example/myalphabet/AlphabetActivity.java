@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -46,12 +47,13 @@ public class AlphabetActivity extends AppCompatActivity {
             while (!cursorLetter.isAfterLast()) {
                 text = cursorLetter.getString(1);
                 btnLetter=new Button(this);
-                String i=cursorLetter.getString(0);
+                String i = cursorLetter.getString(0);
                 btnLetter.setId(Integer.parseInt(i));
                 btnLetter.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         int id=v.getId();
+                        Toast.makeText(AlphabetActivity.this,id+">>>"+"*",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(AlphabetActivity.this,LetterDetailActivity.class);
                         intent.putExtra(LetterDetailActivity.EXTRA_BUTTON_ID,id);
                         startActivity(intent);

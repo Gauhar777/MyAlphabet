@@ -15,11 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -46,7 +42,6 @@ public class DetailFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int nn=getArguments().getInt("letter_id",0);
-        Toast.makeText(getActivity(),nn+"*",Toast.LENGTH_SHORT).show();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,14 +49,16 @@ public class DetailFragment extends Fragment {
     {
         View view=inflater.inflate(R.layout.fragment_detail, container, false);
         idLetter= getArguments() != null ? getArguments().getInt("letter_id") : 1;
+        final int letter_id=(int) idLetter-1;
+
         Button btnwoman=(Button)view.findViewById(R.id.woman);
         btnwoman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setupDBHelper();
-                Cursor cursorLetter=mDb.rawQuery("SELECT * FROM voice WHERE letter_id="+idLetter,null);
+                Cursor cursorLetter=mDb.rawQuery("SELECT * FROM voice WHERE letter_id="+letter_id,null);
                 cursorLetter.moveToFirst();
-                Toast.makeText(getActivity(),idLetter+"*",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(),idLetter+"*",Toast.LENGTH_SHORT).show();
                 String name=cursorLetter.getString(2);
                 int rawId = getResources().getIdentifier("com.example.myalphabet:raw/" + name, null, null);
                 mediaPlayer = MediaPlayer.create(getContext(), rawId);
@@ -78,9 +75,12 @@ public class DetailFragment extends Fragment {
         TextView cLetter= (TextView)getView().findViewById(R.id.capital_letter);
         String letter;
         setupDBHelper();
-        int cl=getArguments().getInt("letter_id",2);
-        Toast.makeText(getActivity(),cl+"7",Toast.LENGTH_SHORT).show();
-        Cursor cursorLetter=mDb.rawQuery("SELECT * FROM letter WHERE id="+cl+"",null);
+        final int letter_id=(int) idLetter+1;
+//        Toast.makeText(getActivity(),"*"+letter_id+"*",Toast.LENGTH_SHORT).show();
+//        Log.d("tag","*"+letter_id+"*");
+//        int cl=getArguments().getInt("letter_id",2);
+        //Toast.makeText(getActivity(),cl+"7",Toast.LENGTH_SHORT).show();
+        Cursor cursorLetter=mDb.rawQuery("SELECT * FROM letter WHERE id="+letter_id+"",null);
         cursorLetter.moveToFirst();
         letter=cursorLetter.getString(1);
         cLetter.setText(letter);
@@ -88,13 +88,13 @@ public class DetailFragment extends Fragment {
 
 /*-****************************************photo of head section***************************************************************************/
         ImageView pageImg=(ImageView)getView().findViewById(R.id.banner);
-        Cursor cursorOnLetterImage=mDb.rawQuery("SELECT * FROM main_example WHERE letter_id="+cl,null);
+        Cursor cursorOnLetterImage=mDb.rawQuery("SELECT * FROM main_example WHERE letter_id="+letter_id,null);
         cursorOnLetterImage.moveToFirst();
         String imageName=cursorOnLetterImage.getString(2);
         int imgId = getResources().getIdentifier("com.example.myalphabet:drawable/" + imageName, null, null);
         pageImg.setImageResource(imgId);
 
-        /*-****************************************main example word of head section***************************************************************************/
+/*-****************************************main example word of head section***************************************************************************/
         int exId=cursorOnLetterImage.getInt(1);
         TextView pageExample=(TextView)getView().findViewById(R.id.example);
         String example;
@@ -102,7 +102,7 @@ public class DetailFragment extends Fragment {
         cursorExample.moveToFirst();
         example=cursorExample.getString(1);
         pageExample.setText(example);
-        /*-****************************************main word transcription of head section***************************************************************************/
+/*-****************************************main word transcription of head section***************************************************************************/
         TextView pageTranscript=(TextView)getView().findViewById(R.id.transcript);
         String transcript;
         transcript=cursorExample.getString(3);
@@ -113,7 +113,6 @@ public class DetailFragment extends Fragment {
         setupDBHelper();
         Cursor cursorLetter=mDb.rawQuery("SELECT * FROM voice WHERE letter_id="+idLetter,null);
         cursorLetter.moveToFirst();
-        Toast.makeText(getActivity(),idLetter+"*",Toast.LENGTH_SHORT).show();
         String name=cursorLetter.getString(2);
         int rawId = getResources().getIdentifier("com.example.myalphabet:raw/" + name, null, null);
         mediaPlayer = MediaPlayer.create(getContext(), rawId);

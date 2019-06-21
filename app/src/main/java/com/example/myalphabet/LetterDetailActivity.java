@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.BottomSheetBehavior;
@@ -12,26 +11,13 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 public class LetterDetailActivity extends AppCompatActivity {
     public static final String EXTRA_BUTTON_ID = "id";
     private DBHelper mDBHelper;
@@ -43,8 +29,8 @@ public class LetterDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_letter_detail);
         Intent mIntent=getIntent();
+
         int letter_id=((int)mIntent.getExtras().get(EXTRA_BUTTON_ID));
-        Toast.makeText(LetterDetailActivity.this,letter_id+">>>"+"*",Toast.LENGTH_SHORT).show();
 //*********************************************************bottom sheet first descriptions***************************************************
         bottomSheet=(NestedScrollView)findViewById(R.id.bottom_sheet);
         bottomSheetBehavior=BottomSheetBehavior.from(bottomSheet);
@@ -61,35 +47,22 @@ public class LetterDetailActivity extends AppCompatActivity {
             @Override
             public void onSlide(@NonNull View view, float v) {
             }
+
         });
         bottomSheetBehavior.setPeekHeight(150);
 //*******************************************************cards pages******************************************************************************
         final ViewPager pager=(ViewPager)findViewById(R.id.pager2);
         pager.setAdapter(new MyAdapter(getSupportFragmentManager()));
-        pager.setCurrentItem(letter_id);
+        int id=(letter_id-1);
+        pager.setCurrentItem(id);
+
 //*******************************************************examples in bottomsheet pagers************************************************************
-        int curentItm=pager.getCurrentItem();
-//        final ViewPager exPager=(ViewPager) findViewById(R.id.ex_pager);
-//        exPager.setAdapter(new ExamplesAdapter(getSupportFragmentManager()));
-//        exPager.setCurrentItem(curentItm,true);
         goPreviousPgeTollbar();
 //*******************************************************When cards scrolled examples list scrolled too*********************************************
-//        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int i, float v, int i1) {
-//            }
-//            @Override
-//            public void onPageSelected(int i) {
-//                exPager.setCurrentItem(i,true);
-//            }
-//            @Override
-//            public void onPageScrollStateChanged(int i) {
-//            }
-//        });
 
+//*******************************************************Next/previous buttons*****************************************
         ImageButton btnNext=(ImageButton)findViewById(R.id.next_page);
         ImageButton btnPrev=(ImageButton)findViewById(R.id.prev_page);
-//*******************************************************Next/previous buttons*****************************************
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,7 +88,7 @@ public class LetterDetailActivity extends AppCompatActivity {
     }
     private ArrayList<ExampleListItemDTO> generateItems (){
         ViewPager pager=(ViewPager)findViewById(R.id.pager2);
-        int letter=pager.getCurrentItem();
+        int letter=pager.getCurrentItem()+1;
         ArrayList<ExampleListItemDTO> list=new ArrayList<>();
         setupDBHelper();
         final Cursor cursorExample=mDb.rawQuery("SELECT * FROM example WHERE letter_id="+letter,null);
