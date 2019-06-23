@@ -8,7 +8,9 @@
     android:orientation="vertical">
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
         <TextView
             android:id="@+id/item_word"
             android:layout_width="0dp"
@@ -42,6 +44,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
             android:orientation="horizontal"

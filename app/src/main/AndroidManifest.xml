@@ -9,10 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".OneTaskActivity"
-            android:parentActivityName=".ExrActivity"></activity>
-        <activity android:name=".ExrActivity"
-            android:parentActivityName=".CategoryActivity"/>
+        <activity android:name=".ExrQuestionActivity"></activity>
+        <activity android:name=".ExrReadActivity" />
+        <activity android:name=".ZhattygularActivity" />
+        <activity android:name=".ExrWriteActivity" />
+        <activity
+            android:name=".OneTaskActivity"
+            android:parentActivityName=".ExrActivity" />
+        <activity
+            android:name=".ExrActivity"
+            android:parentActivityName=".CategoryActivity" />
         <activity
             android:name=".AlphabetActivity"
             android:parentActivityName=".CategoryActivity" />

@@ -72,12 +72,12 @@ public class AlphabetActivity extends AppCompatActivity {
 
                 cursorLetter.moveToNext();
             btnLetter.setTransformationMethod(null);
-            btnLetter.setTextSize(50);
             btnLetter.setHeight(350);
             btnLetter.setWidth(350);
-            //btnLetter.setPadding(50,50,50,50);
+            btnLetter.setTextSize(50);
+            btnLetter.setPadding(50,50,50,50);
             GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
-            //layoutParams.setMargins(2, 2,2, 2);
+            layoutParams.setMargins(2, 2,2, 2);
             layoutParams.setGravity(Gravity.CENTER);
             grl.addView(btnLetter, layoutParams);
             }

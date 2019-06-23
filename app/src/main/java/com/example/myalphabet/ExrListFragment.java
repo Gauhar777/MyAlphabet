@@ -67,7 +67,7 @@ public class ExrListFragment extends ListFragment {
             ListView lv = listView;
             String selectedFromList = (lv.getItemAtPosition(position)).toString();
             //Log.i("IU","-----------------------"+selectedFromList);
-            Toast.makeText(getContext(),selectedFromList,Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(),selectedFromList,Toast.LENGTH_SHORT).show();
 
             setupDBHelper();
             Cursor cursor=mDb.rawQuery("SELECT * FROM task WHERE task='"+selectedFromList+"'",null);

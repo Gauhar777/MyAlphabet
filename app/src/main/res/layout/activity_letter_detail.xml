@@ -9,115 +9,107 @@
     android:layout_height="match_parent"
     tools:context=".LetterDetailActivity">
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/app_name"
-            app:titleTextColor="@color/mainGray"
             android:background="@drawable/action_bar_back"
-            android:layout_width="match_parent" >
+            app:title="@string/app_name"
+            app:titleTextColor="@color/mainGray">
 
-    </android.support.v7.widget.Toolbar>
+        </android.support.v7.widget.Toolbar>
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".LetterDetailActivity">
-
-        <android.support.v4.view.ViewPager
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/pager2"
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="-250dp"
-            tools:layout_editor_absoluteY="0dp"/>
+            tools:context=".LetterDetailActivity">
 
-        <ImageButton
-            android:id="@+id/prev_page"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/prev"
-            app:layout_constraintBottom_toBottomOf="@+id/pager2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/pager2" />
+            <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/pager2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteX="-250dp"
+                tools:layout_editor_absoluteY="0dp" />
 
-        <ImageButton
-            android:id="@+id/next_page"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginRight="25dp"
-            android:background="@drawable/next"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/pager2" />
-    </android.support.constraint.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/prev_page"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/prev"
+                app:layout_constraintBottom_toBottomOf="@+id/pager2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/pager2" />
+
+            <ImageButton
+                android:id="@+id/next_page"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginRight="25dp"
+                android:background="@drawable/next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/pager2" />
+        </android.support.constraint.ConstraintLayout>
     </LinearLayout>
+
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="345dp"
         android:background="@android:color/transparent"
         app:layout_behavior="@string/bottom_sheet_behavior">
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.constraint.ConstraintLayout
-                android:background="@drawable/bottom_sheet_head"
-                android:layout_width="match_parent"
-                android:layout_height="65dp">
-
-                <Button
-                    android:id="@+id/arrowBtn"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:onClick="onArrowClick"
-                    android:background="@drawable/menu_arrow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </android.support.constraint.ConstraintLayout>
-            <android.support.constraint.ConstraintLayout
-                android:background="@color/mainWhite"
-                android:layout_width="match_parent"
-                android:layout_height="220dp">
-                <ScrollView
-                    android:id="@+id/scrollView1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:fillViewport="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                <LinearLayout
-                    android:id="@+id/exs"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom">
+                <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:background="#fff"
-                    android:orientation="vertical">
+                    android:layout_height="65dp"
+                    android:background="@drawable/bottom_sheet_head">
+
+                    <Button
+                        android:id="@+id/arrowBtn"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/menu_arrow"
+                        android:onClick="onArrowClick"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:background="@color/mainWhite">
                     <ListView
                         android:id="@+id/data_list"
+                        android:nestedScrollingEnabled="true"
+                        android:fastScrollEnabled="true"
+                        android:fastScrollAlwaysVisible="true"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></ListView>
-                </LinearLayout>
-                </ScrollView>
-            </android.support.constraint.ConstraintLayout>
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+
 </android.support.design.widget.CoordinatorLayout>

@@ -30,7 +30,7 @@ public class CategoryActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void toExr(View view){
-        Intent intent = new Intent(this,ExrActivity.class);
+        Intent intent = new Intent(this,ZhattygularActivity.class);
         startActivity(intent);
     }
     public  void rightSideMenuBar(){

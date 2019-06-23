@@ -17,14 +17,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <GridLayout
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:textAllCaps="false"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/grid"
-            android:layout_gravity="top|center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:columnWidth="100dp"
             android:columnCount="3"
-            android:orientation="horizontal">
+            android:numColumns="auto_fit"
+            android:horizontalSpacing="10dp"
+            android:stretchMode="spacingWidthUniform"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_columnWeight="1"/>
         </GridLayout>
     </ScrollView>
 
