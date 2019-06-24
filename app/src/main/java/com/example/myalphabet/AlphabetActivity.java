@@ -6,11 +6,16 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -19,7 +24,10 @@ import android.widget.Toast;
 import java.io.IOException;
 
 public class AlphabetActivity extends AppCompatActivity {
-
+    private Toolbar toolbar;
+    private DrawerLayout dl;
+    private ActionBarDrawerToggle t;
+    private NavigationView nv;
     private DBHelper mDBHelper;
     private SQLiteDatabase mDb;
 
@@ -28,14 +36,9 @@ public class AlphabetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alphabet);
         buttonInGridLayout();
-        goPreviousPgeTollbar();
+        rightSideMenuBar();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-    }
 //***************************************Every button on calculator alphabeth*******************************
     private void buttonInGridLayout(){
         GridLayout grl=(GridLayout)findViewById(R.id.grid);
@@ -74,7 +77,7 @@ public class AlphabetActivity extends AppCompatActivity {
             btnLetter.setTransformationMethod(null);
             btnLetter.setHeight(350);
             btnLetter.setWidth(350);
-            btnLetter.setTextSize(50);
+            btnLetter.setTextSize(40);
             btnLetter.setPadding(50,50,50,50);
             GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams();
             layoutParams.setMargins(2, 2,2, 2);
@@ -82,17 +85,52 @@ public class AlphabetActivity extends AppCompatActivity {
             grl.addView(btnLetter, layoutParams);
             }
     }
-
-
-    public void goPreviousPgeTollbar(){
-        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+    public  void rightSideMenuBar(){
+        toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar()!=null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
-    }
 
+        dl = (DrawerLayout)findViewById(R.id.alpha_dr);
+        t = new ActionBarDrawerToggle(this, dl,R.string.Open, R.string.Close);
+        t.syncState();
+        dl.addDrawerListener(t);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        nv = (NavigationView)findViewById(R.id.nav_left);
+//***************************************************клик на позицию в меню*****************************************************************
+        nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                int id = menuItem.getItemId();
+                if (id == R.id.support)
+                {
+                    Intent intent2=new Intent(AlphabetActivity.this,ZhattygularActivity.class);
+                    startActivity(intent2);
+                    Toast.makeText(AlphabetActivity.this, "Zhattygular",Toast.LENGTH_SHORT).show();
+
+                } else if (id == R.id.mycart)
+                {
+                    Intent intent=new Intent(AlphabetActivity.this,Main2Activity.class);
+                    startActivity(intent);
+                    Toast.makeText(AlphabetActivity.this, "Biz turaly",Toast.LENGTH_SHORT).show();
+                }
+                else if (id == R.id.aboutUs)
+                {
+                    Intent intent3=new Intent(AlphabetActivity.this,AlphabetActivity.class);
+                    startActivity(intent3);
+                    Toast.makeText(AlphabetActivity.this, "Basty bet",Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        });
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(t.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void setupDBHelper(){
         Context context=this;
         mDBHelper=new DBHelper(context);

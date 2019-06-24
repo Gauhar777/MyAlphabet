@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ public class ExrReadActivity extends AppCompatActivity {
         cursor.moveToFirst();
         TextView taskText=(TextView)findViewById(R.id.task_2);
         taskText.setText(cursor.getString(1));
-
+        goPreviousPgeTollbar();
         Cursor cursorOneTask=mDb.rawQuery("SELECT * FROM sentence WHERE task_id="+2,null);
         cursorOneTask.moveToFirst();
         TextView kirSentence=(TextView)findViewById(R.id.kir_2);
@@ -55,6 +56,14 @@ public class ExrReadActivity extends AppCompatActivity {
             mDb=mDBHelper.getWritableDatabase();
         }catch (SQLException mSQLException){
             throw mSQLException;
+        }
+    }
+    public void goPreviousPgeTollbar(){
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
     }
 }

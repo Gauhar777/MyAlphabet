@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.io.IOException;
 
 
@@ -49,20 +51,42 @@ public class DetailFragment extends Fragment {
     {
         View view=inflater.inflate(R.layout.fragment_detail, container, false);
         idLetter= getArguments() != null ? getArguments().getInt("letter_id") : 1;
-        final int letter_id=(int) idLetter-1;
+        final int letter_id=(int) idLetter+1;
 
+        Button btnman=(Button)view.findViewById(R.id.man);
         Button btnwoman=(Button)view.findViewById(R.id.woman);
+        btnman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    setupDBHelper();
+                    Cursor cursorLetter=mDb.rawQuery("SELECT * FROM voice WHERE letter_id="+letter_id,null);
+                    cursorLetter.moveToFirst();
+//                Toast.makeText(getActivity(),letter_id+"*",Toast.LENGTH_SHORT).show();
+                    String name=cursorLetter.getString(1);
+                    int rawId = getResources().getIdentifier("com.example.myalphabet:raw/" + name, null, null);
+                    mediaPlayer = MediaPlayer.create(getContext(), rawId);
+                    mediaPlayer.start();
+                }catch (Exception ex){
+                    Toast.makeText(getActivity(),"Qate bar!",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         btnwoman.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setupDBHelper();
-                Cursor cursorLetter=mDb.rawQuery("SELECT * FROM voice WHERE letter_id="+letter_id,null);
-                cursorLetter.moveToFirst();
-                //Toast.makeText(getActivity(),idLetter+"*",Toast.LENGTH_SHORT).show();
-                String name=cursorLetter.getString(2);
-                int rawId = getResources().getIdentifier("com.example.myalphabet:raw/" + name, null, null);
-                mediaPlayer = MediaPlayer.create(getContext(), rawId);
-                mediaPlayer.start();
+                try {
+                    setupDBHelper();
+                    Cursor cursorLetter=mDb.rawQuery("SELECT * FROM voice WHERE letter_id="+letter_id,null);
+                    cursorLetter.moveToFirst();
+//                Toast.makeText(getActivity(),letter_id+"*",Toast.LENGTH_SHORT).show();
+                    String name=cursorLetter.getString(2);
+                    int rawId = getResources().getIdentifier("com.example.myalphabet:raw/" + name, null, null);
+                    mediaPlayer = MediaPlayer.create(getContext(), rawId);
+                    mediaPlayer.start();
+                }catch (Exception ex){
+                    Toast.makeText(getActivity(),"Qate bar!",Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return view;
@@ -109,18 +133,6 @@ public class DetailFragment extends Fragment {
         pageTranscript.setText(transcript);
     }
 
-    public void onWomanVoiceClick(){
-        setupDBHelper();
-        Cursor cursorLetter=mDb.rawQuery("SELECT * FROM voice WHERE letter_id="+idLetter,null);
-        cursorLetter.moveToFirst();
-        String name=cursorLetter.getString(2);
-        int rawId = getResources().getIdentifier("com.example.myalphabet:raw/" + name, null, null);
-        mediaPlayer = MediaPlayer.create(getContext(), rawId);
-        mediaPlayer.start();
-    }
-    public void onManVoiceClick(View view ){
-        mediaPlayer.pause();
-    }
     private void setupDBHelper(){
         Context context=getContext();
         mDBHelper=new DBHelper(context);

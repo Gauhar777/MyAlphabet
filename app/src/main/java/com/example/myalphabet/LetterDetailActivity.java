@@ -116,11 +116,16 @@ public class LetterDetailActivity extends AppCompatActivity {
             int example_id=cursorExample.getInt(0);
             String ex_word=cursorExample.getString(1);
             String ex_transc=cursorExample.getString(3);
-
-            Cursor cursorVoice=mDb.rawQuery("SELECT * FROM voice WHERE example_id="+example_id,null);
+            String ex_w_voice=null;
+            String ex_m_voice=null;
+        try {
+            Cursor cursorVoice = mDb.rawQuery("SELECT * FROM voice WHERE example_id=" + example_id, null);
             cursorVoice.moveToFirst();
-            String ex_w_voice=cursorVoice.getString(2);
-            String ex_m_voice=cursorVoice.getString(1);
+            ex_w_voice = cursorVoice.getString(2);
+            ex_m_voice = cursorVoice.getString(1);
+        }catch (Exception e){
+
+        }
             list.add(new ExampleListItemDTO(ex_word,ex_transc,ex_w_voice,ex_m_voice));
             cursorExample.moveToNext();
         }

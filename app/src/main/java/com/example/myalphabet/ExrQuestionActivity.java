@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -23,7 +24,7 @@ public class ExrQuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exr_question);
-
+        goPreviousPgeTollbar();
         GridLayout gridLayout=(GridLayout)findViewById(R.id.grid_3);
         final GridLayout gridLayoutlat=(GridLayout)findViewById(R.id.grid_3_lat);
         setupDBHelper();
@@ -90,6 +91,14 @@ public class ExrQuestionActivity extends AppCompatActivity {
                 gridLayoutlat.setVisibility(View.VISIBLE);
             }
         });
+    }
+    public void goPreviousPgeTollbar(){
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar()!=null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
     }
     private void setupDBHelper(){
         Context context=this;

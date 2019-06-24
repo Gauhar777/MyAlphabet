@@ -12,4 +12,8 @@
     <string name="Close">close</string>
     <string name="check">Tekseru</string>
     <string name="task">Tapsyrma:</string>
+    <string name="t_name">Шәріпбай А.Ә.</string>
+    <string name="t_stat">т.ғ.д., Л.Н.Гумилев атындағы ЕҰУ, «Информатика және ақпараттық қауіпсіздік» кафедрасының профессоры</string>
+    <string name="s_name">Әбдіқұл С.Б.</string>
+    <string name="s_stat">Л.Н.Гумилев атындағы ЕҰУ-нің магистранты</string>
 </resources>

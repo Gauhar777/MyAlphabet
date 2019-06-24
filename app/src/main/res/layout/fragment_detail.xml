@@ -25,18 +25,18 @@
                 android:layout_height="0dp"
                 android:layout_weight="1">
                 <Button
-                    android:id="@+id/woman"
+                    android:id="@+id/man"
                     android:background="@drawable/man_voice"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginRight="24dp"
-                    app:layout_constraintEnd_toStartOf="@+id/man"
+                    app:layout_constraintEnd_toStartOf="@+id/woman"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:background="@drawable/woman_voice"
-                    android:id="@+id/man"
+                    android:id="@+id/woman"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginEnd="8dp"

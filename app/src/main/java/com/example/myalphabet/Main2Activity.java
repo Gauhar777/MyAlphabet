@@ -19,63 +19,6 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        initViews();
     }
-
-    private void initViews() {
-        buttonPlayStop = (Button)findViewById(R.id.ButtonPlayStop);
-        mediaPlayer=MediaPlayer.create(this,R.raw.a_w);
-
-        seekBar=(SeekBar) findViewById(R.id.seekBar);
-        seekBar.setMax(mediaPlayer.getDuration());
-        seekBar.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                seekChange(v);
-                return false;
-            }
-
-            private void seekChange(View v) {
-                if (mediaPlayer.isPlaying()) {
-                    SeekBar sb=(SeekBar)v;
-                    mediaPlayer.seekTo(sb.getProgress());
-                }
-            }
-        });
-    }
-
-    public void playAndStop(View view) {
-        if (buttonPlayStop.getText()==getString(R.string.play_str)){
-            buttonPlayStop.setText(getString(R.string.pause_str));
-            try{
-                mediaPlayer.start();
-                startPlayProgressUpdater();
-            }catch (IllegalStateException e){
-                mediaPlayer.pause();
-            }
-        }else {
-            buttonPlayStop.setText(getString(R.string.play_str));
-            mediaPlayer.pause();
-        }
-    }
-
-    private void startPlayProgressUpdater() {
-        seekBar.setProgress(mediaPlayer.getCurrentPosition());
-        if (mediaPlayer.isPlaying()){
-            Runnable notification=new Runnable() {
-                @Override
-                public void run() {
-                    startPlayProgressUpdater();
-                }
-            };
-            handler.postDelayed(notification,1000);
-        }else{
-            mediaPlayer.pause();
-            buttonPlayStop.setText(getString(R.string.play_str));
-            seekBar.setProgress(0);
-        }
-    }
-
-
 
 }

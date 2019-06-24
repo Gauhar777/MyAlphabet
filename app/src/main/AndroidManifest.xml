@@ -9,28 +9,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ExrQuestionActivity"></activity>
-        <activity android:name=".ExrReadActivity" />
-        <activity android:name=".ZhattygularActivity" />
-        <activity android:name=".ExrWriteActivity" />
+        <activity android:name=".ExrQuestionActivity"
+            android:parentActivityName=".ExrActivity" />
+        <activity android:name=".ExrReadActivity"
+            android:parentActivityName=".ExrActivity" />
+        <activity android:name=".ZhattygularActivity"
+            android:parentActivityName=".ExrActivity" />
+        <activity android:name=".ExrWriteActivity"
+            android:parentActivityName=".ExrActivity" />
         <activity
             android:name=".OneTaskActivity"
             android:parentActivityName=".ExrActivity" />
         <activity
             android:name=".ExrActivity"
-            android:parentActivityName=".CategoryActivity" />
+            android:parentActivityName=".AlphabetActivity" />
         <activity
-            android:name=".AlphabetActivity"
+            android:name=".CategoryActivity"
             android:parentActivityName=".CategoryActivity" />
         <activity android:name=".Main2Activity" />
         <activity
             android:name=".LetterDetailActivity"
             android:parentActivityName=".AlphabetActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".CategoryActivity">
+        <activity android:name=".AlphabetActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

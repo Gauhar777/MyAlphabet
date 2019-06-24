@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/mycart"
+        android:icon="@drawable/alph"
         android:title="@string/aboutUs"/>
     <item
         android:id="@+id/aboutUs"
+        android:icon="@drawable/alph"
         android:title="@string/Alphabeth"/>
     <item
         android:id="@+id/support"
+        android:icon="@drawable/zhattygu"
         android:title="@string/exersize"/>
 </menu>
