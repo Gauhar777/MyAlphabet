@@ -56,7 +56,6 @@ public class AlphabetActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         int id=v.getId();
-                        Toast.makeText(AlphabetActivity.this,id+">>>"+"*",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(AlphabetActivity.this,LetterDetailActivity.class);
                         intent.putExtra(LetterDetailActivity.EXTRA_BUTTON_ID,id);
                         startActivity(intent);

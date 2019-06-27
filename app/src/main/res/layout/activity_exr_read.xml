@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/action_bar_back"
-        app:title="@string/app_name"
+        app:title="@string/exersize"
         app:titleTextColor="@color/mainGray">
     </android.support.v7.widget.Toolbar>
     <LinearLayout

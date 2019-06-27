@@ -14,7 +14,7 @@ import java.io.OutputStream;
 public class DBHelper extends SQLiteOpenHelper {
     private static String DB_NAME = "newAlphabeth.db";
     private static String DB_PATH = "";
-    private static final int DB_VERSION = 15;
+    private static final int DB_VERSION = 23;
 
     private SQLiteDatabase mDataBase;
     private final Context mContext;

@@ -97,7 +97,8 @@ public class DetailFragment extends Fragment {
         super.onStart();
 /*-****************************************letter of head section***************************************************************************/
         TextView cLetter= (TextView)getView().findViewById(R.id.capital_letter);
-        String letter;
+        TextView ctranscr= (TextView)getView().findViewById(R.id.transcript_letter);
+        String letter,transcr;
         setupDBHelper();
         final int letter_id=(int) idLetter+1;
 //        Toast.makeText(getActivity(),"*"+letter_id+"*",Toast.LENGTH_SHORT).show();
@@ -109,7 +110,8 @@ public class DetailFragment extends Fragment {
         letter=cursorLetter.getString(1);
         cLetter.setText(letter);
 /*-****************************************letter transcription of head section***************************************************************************/
-
+        transcr=cursorLetter.getString(2);
+        ctranscr.setText(transcr);
 /*-****************************************photo of head section***************************************************************************/
         ImageView pageImg=(ImageView)getView().findViewById(R.id.banner);
         Cursor cursorOnLetterImage=mDb.rawQuery("SELECT * FROM main_example WHERE letter_id="+letter_id,null);
